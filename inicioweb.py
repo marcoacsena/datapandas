@@ -4,12 +4,13 @@ import pandas as pd
 
 app = Flask(__name__)
 
-dfjson = pd.read_excel('datacleaning.xlsx')
+df = pd.read_excel('datacleaning.xlsx')
+new_df = df.dropna()#esse método é para retirar as células (valores) vazios
 
 @app.route('/')
 
 def show_data():
-    table_html = dfjson.to_html(classes='table table-striped', index=False)
+    table_html = df.to_html(classes='table table-striped', index=False)
     html = f"""
     <!DOCTYPE html>
     <html>
