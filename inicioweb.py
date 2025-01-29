@@ -4,8 +4,10 @@ import pandas as pd
 
 app = Flask(__name__)
 
-df = pd.read_excel('datacleaning.xlsx')
-new_df = df.dropna()#esse método é para retirar as células (valores) vazios
+df = pd.read_csv('datacleaning.csv')
+#new_df = df.dropna()#esse método é para retirar as células (valores) vazios
+
+df['Date'] = pd.to_datetime(df['Date'], format='mixed', dayfirst=False)
 
 @app.route('/')
 
