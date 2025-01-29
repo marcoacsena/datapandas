@@ -14,10 +14,14 @@ df.loc[7, 'Duration'] = 45 #esse método é para corrigir valores com erro de di
 
 df.drop_duplicates(inplace=True)
 
+correlationbetweencolunms = df.corr()#This code shows corrrelation between colunms
+
+#print(df.corr())
+
 @app.route('/')
 
 def show_data():
-    table_html = df.to_html(classes='table table-striped', index=False)
+    table_html = correlationbetweencolunms.to_html(classes='table table-striped', index=False)
     html = f"""
     <!DOCTYPE html>
     <html>
