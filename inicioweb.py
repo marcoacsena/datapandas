@@ -5,9 +5,14 @@ import pandas as pd
 app = Flask(__name__)
 
 df = pd.read_csv('datacleaning.csv')
-#new_df = df.dropna()#esse método é para retirar as células (valores) vazios
+df = df.dropna()#esse método é para retirar as células (valores) vazios
 
-df['Date'] = pd.to_datetime(df['Date'], format='mixed', dayfirst=False)
+df['Date'] = pd.to_datetime(df['Date'], format='mixed', dayfirst=False)#esse método é para corrigir valores de datas mal 
+#formatados.
+
+df.loc[7, 'Duration'] = 45 #esse método é para corrigir valores com erro de digitação. Erros do tipo "typo", in english.
+
+df.drop_duplicates(inplace=True)
 
 @app.route('/')
 
